@@ -1,0 +1,26 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components {
+    .my-input{
+        @apply border-2 p-1 rounded;
+    }
+
+    .my-input:focus{
+        @apply border-blue-600 outline-none;
+    }
+
+    .my-btn{
+        @apply py-1 px-4 border-2 font-bold rounded;
+    }
+
+    .btn-blue{
+        @apply text-white  bg-blue-600 border-blue-600;
+    }
+
+    .btn-blue:hover{
+        @apply bg-blue-500 border-blue-500;
+    }
+
+}

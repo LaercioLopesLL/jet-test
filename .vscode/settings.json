@@ -1,0 +1,8 @@
+{
+    "tailwindCSS.includeLanguages": {
+        "HTML": "html",
+        "PHP": "html",
+        "Blade.php": "html"
+    },
+    "tailwindCSS.emmetCompletions": true
+}
