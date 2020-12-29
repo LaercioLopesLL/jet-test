@@ -1,4 +1,19 @@
 {
+    "Blank": "Branco",
+    "Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.":
+    "Tem certeza que deseja deletar sua conta? Depois que sua conta for excluída, todos os seus recursos e dados serão excluídos permanentemente. Digite sua senha para confirmar que deseja excluir permanentemente sua conta.",
+    "Done.": "Feito.",
+    "Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.":
+    "Por favor, digite sua senha para confirmar que você gostaria de sair de suas outras sessões de navegador em todos os seus dispositivos.",
+    "Saved.": "Salva.",
+    "You have enabled two factor authentication.": "Você habilitou a autenticação de dois fatores.",
+    "Confirm": "Confirmar",
+    "Nevermind": "Cancelar",
+    "For your security, please confirm your password to continue.": "Para sua segurança, confirme sua senha para continuar.",
+    "Already registered?": "Já registrado?",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.":
+    "Esqueceu sua senha? Sem problemas. Basta nos informar seu endereço de e-mail e nós enviaremos um link de redefinição de senha que permitirá que você escolha uma nova.",
+    "Email Password Reset Link": "Enviar e-mail para redefinir senha",
     "Name": "Nome",
     "Showing": "Mostrando",
     "to": "até",
@@ -17,7 +32,12 @@
     "Ensure your account is using a long, random password to stay secure.":
     "Certifique-se de que sua conta está usando uma senha longa e aleatória para permanecer segura.",
     "Current Password": "Senha atual",
+    "Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator application.":
+    "A autenticação de dois fatores agora está habilitada. Leia o seguinte código QR usando o aplicativo autenticador do seu telefone.",
+    "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.": "Armazene esses códigos de recuperação em um gerenciador de senhas seguro. Eles podem ser usados para recuperar o acesso à sua conta se o seu dispositivo de autenticação de dois fatores for perdido.",
+    "Regenerate Recovery Codes": "Gerar novamente códigos de recuperação",
     "New Password": "Nova senha",
+    "Disable": "Desabilitar",
     "Two Factor Authentication": "Autenticação de dois fatores",
     "Add additional security to your account using two factor authentication.": "Adicione segurança adicional à sua conta usando autenticação de dois fatores.",
     "You have not enabled two factor authentication.": "Você não ativou a autenticação de dois fatores.",
