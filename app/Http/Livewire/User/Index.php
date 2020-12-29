@@ -5,12 +5,14 @@ namespace App\Http\Livewire\User;
 use Livewire\Component;
 use App\Models\User;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Validator;
 
 class Index extends Component
 {
     use WithPagination;
     public $search;
-    public $recordsPage = 10;
+    public $recordsPerPage = 10;
+    public $name, $email;
 
     public function updatingSearch()
     {
@@ -22,7 +24,33 @@ class Index extends Component
         return view('livewire.user.index',
             ['users'=>User::where('name', 'like', '%'.$this->search.'%')
                 ->orWhere('email', 'like', '%'.$this->search.'%')
-                ->paginate($this->recordsPage)
+                ->orderBy('id', 'desc')
+                ->paginate($this->recordsPerPage)
             ]);
+    }
+
+    public function clearInputs(){
+        $this->name = $this->email = null;
+    }
+
+    public function store()
+    {
+        Validator::make([
+            'name'=>$this->name,
+            'email'=>$this->email,
+        ],
+        [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        ])->validate();
+
+        User::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => 'not_defined_yet',
+        ]);
+
+        session()->flash('message', 'Usuário '. $this->name .' adicionado com sucesso.');
+        $this->clearInputs();
     }
 }
