@@ -1,7 +1,7 @@
 <div>
 	<div>
 		@if (session()->has('message'))
-			<div class="p-2 bg-green-300 text-green-900 rounded">
+			<div class="p-2 bg-green-300 text-green-900 rounded mb-2">
 				{{ session('message') }}
 			</div>
 		@endif
