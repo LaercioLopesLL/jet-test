@@ -1,8 +1,15 @@
 <div>
 	<div>
+
+	
 		@if (session()->has('message'))
-			<div class="p-2 bg-green-300 text-green-900 rounded mb-2">
-				{{ session('message') }}
+			<div x-data="{ open: true }" x-show.transition.out.duration.500ms="open" class="p-3 flex justify-between align-middle bg-green-300 bg-opacity-50 text-green-900 rounded mb-2">
+				<span>{{ session('message') }}</span>
+				<button class="focus:outline-none" @click="open = false">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="/currentColor">
+						<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+					</svg>
+				</button>
 			</div>
 		@endif
 		<input class="my-input" type="text" wire:model.defer="name">
