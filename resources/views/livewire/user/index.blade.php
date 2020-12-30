@@ -9,19 +9,19 @@
 		<input class="my-input" type="text" wire:model.defer="email">
 		<button class="my-btn btn-blue" wire:click="store" wire:loading.attr="disabled">Salvar</button>
 	</div>
-	<div class="w-full mt-4">
-		<div class="bg-white shadow-md rounded">
-			<div class="flex place-content-between">
-				<div class="text-sm">
-					<select wire:model="recordsPerPage">
-						<option>5</option>
-						<option>10</option>
-						<option>20</option>
-					</select>
-					registros por página
-				</div>
-				<input class="my-input ml-auto" placeholder="Buscar" type="search" wire:model="search">
+	<div class="w-full mt-4 text-gray-700">
+		<div class="flex place-content-between">
+			<div class="text-sm">
+				<select wire:model="recordsPerPage">
+					<option>5</option>
+					<option>10</option>
+					<option>20</option>
+				</select>
+				registros por página
 			</div>
+			<input class="my-input ml-auto" placeholder="Buscar" type="search" wire:model="search">
+		</div>
+		<div class="shadow-md rounded mt-1 border-t border-gray-400 border-opacity-50">
 			<table class="text-left w-full border-collapse">
 				<thead>
 					<tr>
@@ -40,7 +40,8 @@
 					@endforeach
 				</tbody>
 			</table>
-			{{ $users->links() }}
+			
 		</div>
+		{{ $users->links() }}
 	</div>
 </div>
