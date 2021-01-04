@@ -12,7 +12,14 @@ class Index extends Component
     use WithPagination;
     public $search;
     public $recordsPerPage = 10;
-    public $name, $email;
+    public $name;
+    public $email;
+    public $modal;
+
+    protected $rules = [
+        'name' => 'required|min:3',
+        'email' => 'required|email',
+    ];
 
     public function updatingSearch()
     {
@@ -29,20 +36,23 @@ class Index extends Component
             ]);
     }
 
+    public function openModal()
+    {
+        $this->modal = true;
+    }
+
+    public function closeModal()
+    {
+        $this->modal = false;
+    }
+
     public function clearInputs(){
         $this->name = $this->email = null;
     }
 
     public function store()
     {
-        Validator::make([
-            'name'=>$this->name,
-            'email'=>$this->email,
-        ],
-        [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        ])->validate();
+        $this->validate();
 
         User::create([
             'name' => $this->name,
@@ -52,5 +62,6 @@ class Index extends Component
 
         session()->flash('message', 'Usuário '. $this->name .' adicionado com sucesso.');
         $this->clearInputs();
+        $this->closeModal();
     }
 }
