@@ -36,16 +36,6 @@ class Index extends Component
             ]);
     }
 
-    public function openModal()
-    {
-        $this->modal = true;
-    }
-
-    public function closeModal()
-    {
-        $this->modal = false;
-    }
-
     public function clearInputs(){
         $this->name = $this->email = null;
     }
@@ -62,6 +52,6 @@ class Index extends Component
 
         session()->flash('message', 'Usuário '. $this->name .' adicionado com sucesso.');
         $this->clearInputs();
-        $this->closeModal();
+        $this->modal = false;
     }
 }
