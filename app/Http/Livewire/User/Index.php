@@ -10,17 +10,12 @@ use Illuminate\Support\Facades\Validator;
 class Index extends Component
 {
     use WithPagination;
-    public $search;
+    public $search, $selected_id, $confirmingDeletion;
     public $recordsPerPage = 10;
-    public $name;
-    public $email;
-    public $modal;
-
-    protected $rules = [
-        'name' => 'required|min:3',
-        'email' => 'required|email',
-    ];
-
+    public $updateMode = false;
+    public $updateOrCreateModal = false;
+    public $name, $email;
+    
     public function updatingSearch()
     {
         $this->resetPage();
@@ -37,12 +32,20 @@ class Index extends Component
     }
 
     public function clearInputs(){
-        $this->name = $this->email = null;
+        $this->selected_id = $this->name = $this->email = null;
     }
 
+    public function updateOrCreate()
+    {
+        $this->updateMode ? $this->update() : $this->store();
+    }    
+    
     public function store()
     {
-        $this->validate();
+        $validatedData = $this->validate([
+            'name' => 'required|min:3|max:50',
+            'email' => 'required|email|unique:users',
+        ]);
 
         User::create([
             'name' => $this->name,
@@ -52,6 +55,67 @@ class Index extends Component
 
         session()->flash('message', 'Usuário '. $this->name .' adicionado com sucesso.');
         $this->clearInputs();
-        $this->modal = false;
+        $this->updateOrCreateModal = false;
+    }
+    public function edit($id)
+    {
+        $this->updateMode = true;
+        $this->updateOrCreateModal = true;
+        $user = User::where('id',$id)->first();
+        $this->selected_id = $id;
+        $this->name = $user->name;
+        $this->email = $user->email;
+    }
+
+    public function fillData($id)
+    {
+        $user = User::where('id',$id)->first();
+        $this->selected_id = $id;
+        $this->name = $user->name;
+        $this->email = $user->email;
+    }
+
+    public function cancel()
+    {
+        $this->updateMode = false;
+        $this->confirmingDeletion = false;
+        $this->updateOrCreateModal = false;
+        $this->clearInputs();
+    }
+
+    public function update()
+    {
+        $validatedData = $this->validate([
+            'name' => 'required|min:3|max:50',
+            'email' => 'required|email|unique:users,email,'. $this->selected_id,
+        ]);
+
+        if ($this->selected_id) {
+            $user = User::find($this->selected_id);
+            $user->update([
+                'name' => $this->name,
+                'email' => $this->email,
+            ]);
+            $this->updateMode = false;
+            $this->updateOrCreateModal = false;
+            session()->flash('message', 'Usuário '. $this->name .' editado com sucesso.');
+            $this->clearInputs();
+        }
+    }
+
+    public function confirmDelete($id)
+    {
+        $this->fillData($id);
+        $this->confirmingDeletion = true;
+    }
+
+    public function delete()
+    {
+        if($this->selected_id && $this->confirmingDeletion){
+            User::where('id',$this->selected_id)->delete();
+            session()->flash('message', 'Usuário '. $this->name .' excluído com sucesso.');
+            $this->confirmingDeletion = false;
+            $this->clearInputs();
+        }
     }
 }
