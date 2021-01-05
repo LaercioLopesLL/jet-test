@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="mt-4">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="px-6 max-w-7xl mx-auto md:px-9 lg:px-12">
             <livewire:user.index />
         </div>
     </div>
