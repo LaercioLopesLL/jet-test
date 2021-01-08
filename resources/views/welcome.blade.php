@@ -15,7 +15,7 @@
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="fixed top-0 right-0 px-6 py-4 block">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                     @else
@@ -28,7 +28,7 @@
                 </div>
             @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto mt-12 sm:px-6 lg:px-8">
                 <h1 class="text-center text-6xl text-red-500 uppercase"><strong>Jet</strong>Test</h1>
                 
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="331px" height="314px" viewBox="0 0 331 314" enable-background="new 0 0 331 314" xml:space="preserve">  <image id="image0" width="331" height="314" x="0" y="0"
